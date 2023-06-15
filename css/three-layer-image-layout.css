@@ -1,0 +1,25 @@
+.section-container{
+    padding: 0px 20px;
+}
+
+.container-title{
+    margin-bottom: 20px;
+}
+
+.image-container{
+    max-width: 900px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.image-container a{
+    /* width: 33%; */
+    display: inline-block;
+    /* padding: 10%; */
+}
+
+img{
+    /* width: 33%; */
+    display: block;
+   width: 100%;
+}
