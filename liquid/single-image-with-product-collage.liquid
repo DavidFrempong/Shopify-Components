@@ -1,37 +1,189 @@
+{{ 'single-image-with-product-collage.css' | asset_url | stylesheet_tag }}
+{{ 'three-layer-image-layout.css' | asset_url | stylesheet_tag }}
+
+<div class="main-content main-content--{{ section.settings.content_layout }} main-content--{{ section.settings.content_layout_mobile }}">
+  <div class="large-image">
+         <a href="{{ section.settings.image_link | escape }}">
 <div
-class="{% if settings.single_image != blank %}{% else %}show_placeholder placeholder{% endif %}"
+class="{% if section.settings.single_image != blank %}{% else %}show_placeholder placeholder{% endif %}"
 >
-{%- if settings.single_image != blank -%}
+{%- if section.settings.single_image != blank -%}
   <img
     srcset="
-      {%- if settings.single_image.width >= 375 -%}
-        {{ settings.single_image | image_url: width: 375 }} 375w,{%- endif -%}
-      {%- if settings.single_image.width >= 550 -%}
-        {{ settings.single_image | image_url: width: 550 }} 550w,{%- endif -%}
-      {%- if settings.single_image.width >= 750 -%}
-        {{ settings.single_image | image_url: width: 750 }} 750w,{%- endif -%}
-      {%- if settings.single_image.width >= 1100 -%}
-        {{ settings.single_image | image_url: width: 1100 }} 1100w,{%- endif -%}
-      {%- if settings.single_image.width >= 1500 -%}
-        {{ settings.single_image | image_url: width: 1500 }} 1500w,{%- endif -%}
-      {%- if settings.single_image.width >= 1780 -%}
-        {{ settings.single_image | image_url: width: 1780 }} 1780w,{%- endif -%}
-      {%- if settings.single_image.width >= 2000 -%}
-        {{ settings.single_image | image_url: width: 2000 }} 2000w,{%- endif -%}
-      {%- if settings.single_image.width >= 3000 -%}
-        {{ settings.single_image | image_url: width: 3000 }} 3000w,{%- endif -%}
-      {%- if settings.single_image.width >= 3840 -%}
-        {{ settings.single_image | image_url: width: 3840 }} 3840w,{%- endif -%}
-      {{ settings.single_image | image_url }} {{ settings.single_image.width }}w
+      {%- if section.settings.single_image.width >= 375 -%}
+        {{ section.settings.single_image | image_url: width: 375 }} 375w,{%- endif -%}
+      {%- if section.settings.single_image.width >= 550 -%}
+        {{ section.settings.single_image | image_url: width: 550 }} 550w,{%- endif -%}
+      {%- if section.settings.single_image.width >= 750 -%}
+        {{ section.settings.single_image | image_url: width: 750 }} 750w,{%- endif -%}
+      {%- if section.settings.single_image.width >= 1100 -%}
+        {{ section.settings.single_image | image_url: width: 1100 }} 1100w,{%- endif -%}
+      {%- if section.settings.single_image.width >= 1500 -%}
+        {{ section.settings.single_image | image_url: width: 1500 }} 1500w,{%- endif -%}
+      {%- if section.settings.single_image.width >= 1780 -%}
+        {{ section.settings.single_image | image_url: width: 1780 }} 1780w,{%- endif -%}
+      {%- if section.settings.single_image.width >= 2000 -%}
+        {{ section.settings.single_image | image_url: width: 2000 }} 2000w,{%- endif -%}
+      {%- if section.settings.single_image.width >= 3000 -%}
+        {{ section.settings.single_image | image_url: width: 3000 }} 3000w,{%- endif -%}
+      {%- if section.settings.single_image.width >= 3840 -%}
+        {{ section.settings.single_image | image_url: width: 3840 }} 3840w,{%- endif -%}
+      {{ section.settings.single_image | image_url }} {{ section.settings.single_image.width }}w
     "
     sizes="100vw"
-    src="{{ settings.single_image | image_url: width: 1500 }}"
+    src="{{ section.settings.single_image | image_url: width: 1500 }}"
     loading="lazy"
-    alt="{{ settings.single_image.alt | escape }}"
-    width="{{ settings.single_image.width }}"
-    height="{{ settings.single_image.width | divided_by: settings.single_image.aspect_ratio | round }}"
+    alt="{{ section.settings.single_image.alt | escape }}"
+    width="{{ section.settings.single_image.width }}"
+    height="{{ section.settings.single_image.width | divided_by: section.settings.single_image.aspect_ratio | round }}"
   >
 {%- else -%}
   {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
 {%- endif -%}
 </div>
+   </a>
+  </div>
+
+  <div class="section-container">
+    <div class="container-title">
+      <p>{{ section.settings['layout-title'] | escape }}</p>
+    </div>
+    <div class="image-container">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'image' %}
+            <a href="{{ block.settings.image_link | escape }}">
+              <div
+                class="{% if block.settings.image_container != blank %}{% else %}show_placeholder placeholder{% endif %}"
+              >
+                {%- if block.settings.image_container != blank -%}
+                  <img
+                    srcset="
+                      {%- if block.settings.image_container.width >= 375 -%}
+                        {{ block.settings.image_container | image_url: width: 375 }} 375w,{%- endif -%}
+                      {%- if block.settings.image_container.width >= 550 -%}
+                        {{ block.settings.image_container | image_url: width: 550 }} 550w,{%- endif -%}
+                      {%- if block.settings.image_container.width >= 750 -%}
+                        {{ block.settings.image_container | image_url: width: 750 }} 750w,{%- endif -%}
+                      {%- if block.settings.image_container.width >= 1100 -%}
+                        {{ block.settings.image_container | image_url: width: 1100 }} 1100w,{%- endif -%}
+                      {%- if block.settings.image_container.width >= 1500 -%}
+                        {{ block.settings.image_container | image_url: width: 1500 }} 1500w,{%- endif -%}
+                      {%- if block.settings.image_container.width >= 1780 -%}
+                        {{ block.settings.image_container | image_url: width: 1780 }} 1780w,{%- endif -%}
+                      {%- if block.settings.image_container.width >= 2000 -%}
+                        {{ block.settings.image_container | image_url: width: 2000 }} 2000w,{%- endif -%}
+                      {%- if block.settings.image_container.width >= 3000 -%}
+                        {{ block.settings.image_container | image_url: width: 3000 }} 3000w,{%- endif -%}
+                      {%- if block.settings.image_container.width >= 3840 -%}
+                        {{ block.settings.image_container | image_url: width: 3840 }} 3840w,{%- endif -%}
+                      {{ block.settings.image_container | image_url }} {{ block.settings.image_container.width }}w
+                    "
+                    sizes="100vw"
+                    src="{{ block.settings.image_container | image_url: width: 1500 }}"
+                    loading="lazy"
+                    alt="{{ block.settings.image_container.alt | escape }}"
+                    width="{{ block.settings.image_container.width }}"
+                    height="{{ block.settings.image_container.width | divided_by: block.settings.image_container.aspect_ratio | round }}"
+                  >
+                {%- else -%}
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                {%- endif -%}
+              </div>
+            </a>
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+ </div>
+</div>
+
+{% schema %}
+{
+	"name": "Single Image with Collage",
+	"class": "spaced-section spaced-section--full-width",
+	"settings": [
+      {
+              "type": "image_picker",
+			"id": "single_image",
+			"label": "Large Image"
+
+      },
+       {
+				"type": "url",
+				"id": "image_link",
+				"label": "Large Image Link"
+		},
+      {
+      "type": "select",
+        "label": "Image and Collage Layout",
+      "id": "content_layout",
+      "options": [
+        {
+          "value": "row",
+          "label": "Image On Left Side, Collage On Right Side"
+        },
+        {
+          "value": "row-reverse",
+           "label": "Collage On Left Side, Image On Right Side"
+        }
+      ],
+        "default": "row",
+       "label": "Image and Collage Layout"
+    },
+      {
+      "type": "select",
+        "label": "Image and Collage Layout (Mobile)",
+      "id": "content_layout_mobile",
+      "options": [
+        {
+          "value": "column",
+          "label": "Image On Top, Collage On Bottom"
+        },
+        {
+          "value": "column-reverse",
+           "label": "Collage On Top, Image On Bottom"
+        }
+      ],
+      "default": "column",
+       "label": "Image and Collage Layout (Mobile)"
+    },
+      {
+			"type": "text",
+			"id": "layout-title",
+			"label": "Collage Title",
+			"default": "Collection available now."
+		}
+	],
+	"blocks": [
+      {
+		"type": "image",
+		"name": "Image",
+		"limit": 9,
+		"settings": [{
+				"type": "image_picker",
+				"id": "image_container",
+				"label": "Choose Image"
+			},
+            {
+				"type": "url",
+				"id": "image_link",
+				"label": "Image Link"
+			}
+		]
+	}
+    ],
+	"presets": [{
+		"name": "Single Image with Collage",
+		"blocks": [{
+			"type": "image"
+		}]
+	}]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
