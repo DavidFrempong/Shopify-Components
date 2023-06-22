@@ -1,0 +1,26 @@
+.main-content{
+    display: flex;
+}
+
+.large-image{
+    width: 75vw;
+    padding: 20px;
+}
+
+.large-image img{
+    width: 100%;
+}
+
+@media only screen and (max-width: 500px) {
+    .main-content{
+        flex-direction: column;
+    }
+
+    .large-image{
+     margin: 0 auto;
+      width: 70vw;
+      padding: 20px 0px;
+    }
+
+    
+}

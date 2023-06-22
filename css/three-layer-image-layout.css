@@ -25,7 +25,7 @@
     /* padding: 10%; */
 }
 
-img{
+.image-container img{
     /* width: 33%; */
     display: block;
    width: 100%;
