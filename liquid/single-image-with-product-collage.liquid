@@ -1,0 +1,37 @@
+<div
+class="{% if settings.single_image != blank %}{% else %}show_placeholder placeholder{% endif %}"
+>
+{%- if settings.single_image != blank -%}
+  <img
+    srcset="
+      {%- if settings.single_image.width >= 375 -%}
+        {{ settings.single_image | image_url: width: 375 }} 375w,{%- endif -%}
+      {%- if settings.single_image.width >= 550 -%}
+        {{ settings.single_image | image_url: width: 550 }} 550w,{%- endif -%}
+      {%- if settings.single_image.width >= 750 -%}
+        {{ settings.single_image | image_url: width: 750 }} 750w,{%- endif -%}
+      {%- if settings.single_image.width >= 1100 -%}
+        {{ settings.single_image | image_url: width: 1100 }} 1100w,{%- endif -%}
+      {%- if settings.single_image.width >= 1500 -%}
+        {{ settings.single_image | image_url: width: 1500 }} 1500w,{%- endif -%}
+      {%- if settings.single_image.width >= 1780 -%}
+        {{ settings.single_image | image_url: width: 1780 }} 1780w,{%- endif -%}
+      {%- if settings.single_image.width >= 2000 -%}
+        {{ settings.single_image | image_url: width: 2000 }} 2000w,{%- endif -%}
+      {%- if settings.single_image.width >= 3000 -%}
+        {{ settings.single_image | image_url: width: 3000 }} 3000w,{%- endif -%}
+      {%- if settings.single_image.width >= 3840 -%}
+        {{ settings.single_image | image_url: width: 3840 }} 3840w,{%- endif -%}
+      {{ settings.single_image | image_url }} {{ settings.single_image.width }}w
+    "
+    sizes="100vw"
+    src="{{ settings.single_image | image_url: width: 1500 }}"
+    loading="lazy"
+    alt="{{ settings.single_image.alt | escape }}"
+    width="{{ settings.single_image.width }}"
+    height="{{ settings.single_image.width | divided_by: settings.single_image.aspect_ratio | round }}"
+  >
+{%- else -%}
+  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+{%- endif -%}
+</div>
